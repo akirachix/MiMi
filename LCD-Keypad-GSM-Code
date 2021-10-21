@@ -1,0 +1,85 @@
+#include <Keypad.h>               // keypad library for interfacing keypad
+const byte ROWS = 4; //four rows
+const byte COLS = 4; //four columns
+int x=0;
+int y=0;
+int n=0;
+int minValue=0;
+int maxValue=0;
+char keyPress=0;
+int keyPressTime=100;
+String msg="";
+
+char hexaKeys[ROWS][COLS] = 
+{
+  {'1','2','3','A'},
+  {'4','5','6','B'},
+  {'7','8','9','C'},
+  {'*','0','#','D'}
+};
+
+byte rowPins[ROWS] = {11, 10, 9, 8}; //connect to the row pinouts of the keypad
+byte colPins[COLS] = {7, 6, 5, 4}; //connect to the column pinouts of the keypad
+And given void getkey function is used for input alphabets
+
+void getkey(int minValue, int maxValue, char keyPress)
+{
+   int ch=minValue;
+   int pressed=1;
+   char key=keyPress;
+   lcd.noBlink();
+   for(int i=0;i<keyPressTime;i++)
+   {     
+      if(key==keyPress)
+      {
+         lcd.setCursor(x,y);
+         lcd.print(alpha[ch]);
+         ch++;
+         if(ch>maxValue)
+         ch=minValue;
+         i=0;   
+      }
+      ....
+      .....
+Below void initGSM() and void initGPRS() functions are used for initializing GSM module and GPRS
+
+void initGSM()
+{
+  connectGSM("AT","OK");
+  connectGSM("ATE1","OK");
+  connectGSM("AT+CPIN?","READY");
+}
+void initGPRS()
+{
+  connectGSM("AT+CIPSHUT","OK");
+  connectGSM("AT+CGATT=1","OK");
+  connectGSM("AT+CSTT=\"airtelgprs.com\",\"\",\"\"","OK");
+  connectGSM("AT+CIICR","OK");
+  delay(1000);
+  Serial1.println("AT+CIFSR");
+  delay(1000);
+}
+Below part of the code is used to create URL and send the data to server via URL.
+
+else if(key == 'D')
+    {
+      lcd.clear();
+      lcd.noBlink();
+      lcd.print("Sending Data");
+      lcd.setCursor(0,1);
+      lcd.print("To Server");
+      url="GET /input/";
+      url+=publicKey;
+      url+="?private_key=";
+      url+=pvtKey;
+      url+="&log=";
+      url+=msg;
+      url+=" HTTP/1.0\r\n\r\n";
+      String svr=Start+","+ip+","+port;
+      delay(1000);
+      connectGSM(svr,"CONNECT");
+      delay(1000);
+      int len = url.length();
+      String str="";
+      str=SendCmd+len;
+      sendToServer(str);
