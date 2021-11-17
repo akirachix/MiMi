@@ -108,7 +108,7 @@ void loop()
 
       liquid_crystal_display.setCursor(1,1);
 
-      liquid_crystal_display.print("Pres # to change");
+      liquid_crystal_display.print("To change #");
 
       delay(2000);
 
@@ -132,7 +132,7 @@ void loop()
 
       liquid_crystal_display.print("Wrong Password");
 
-      liquid_crystal_display.print("Pres # to Change");
+      liquid_crystal_display.print("To Change #");
 
       delay(2000);
 
