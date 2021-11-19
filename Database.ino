@@ -16,8 +16,8 @@ const char* host = "script.google.com";
 const int httpsPort = 443;
 const char* fingerprint  = "46 B2 C3 44 9C 59 09 8B 01 B6 F8 BD 4C FB 00 74 91 2F EF F6"; // for https
 
-const char* ssid = "ClearBlueTechKenya";
-const char* password = "kuenrg1@CBTK";
+const char* ssid = "Codehive";
+const char* password = "codehive!";
 String GOOGLE_SCRIPT_ID = "AKfycbztInX6MqrRSjWYtfuK35BX-QLx0Cdo4IoWogK5inUbSgtBmoTzfo2ir63r8hKmmVWX"; 
 const String unitName = "headquarter"; // any name without spaces and special characters
 //***********Things to change*******************
@@ -75,8 +75,6 @@ void setup() {
 
   Serial.begin(921600); 
 
-  
-
 //  lcd.begin(); // Init with pin default ESP8266 or ARDUINO
 // lcd.begin(0, 2); //ESP8266-01 I2C with pin 0-SDA 2-SCL
 // Turn on the blacklight and print a message.
@@ -128,10 +126,10 @@ void HandleDataFromGoogle(String data)
     lcd.print(" " + String("go in"));
     OpenGate();
   }
-  else if (access=="fridge")
+  else if (access=="Refil")
   {
     
-    lcd.print(" " + String("take it"));
+    lcd.print(" " + String("go ahead"));
     OpenGate();
   }
 
